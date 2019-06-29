@@ -30,5 +30,19 @@ export class FormComponent implements OnInit {
         location: ""
       });
     }*/
+    // stop here if form is invalid
+    if (this.formService.form.invalid) {
+      return;
+    }
+
+    // display form values on success
+    alert(
+      'SUCCESS!! :-)\n\n' + JSON.stringify(this.formService.form.value, null, 4)
+    );
+  }
+
+  onReset() {
+    this.submitted = false;
+    this.formService.form.reset();
   }
 }
