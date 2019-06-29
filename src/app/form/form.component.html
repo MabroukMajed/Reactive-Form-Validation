@@ -1,0 +1,79 @@
+<form [formGroup]="this.formService.form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Nom complet*</label>
+    <input
+      formControlName="fullName"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && formControls.fullName.errors }"
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="submitted && formControls.fullName.errors"
+    >
+      Ce champ est obligatoire.
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Email</label>
+    <input
+      formControlName="email"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && formControls.email.errors }"
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="submitted && formControls.email.errors"
+    >
+      <label *ngIf="formControls.email.errors.required"
+        >Ce champ est obligatoire.</label
+      >
+      <label *ngIf="formControls.email.errors.email"
+        >Adresse e-mail invalide.</label
+      >
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Téléphone</label>
+    <input
+      formControlName="mobile"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && formControls.mobile.errors }"
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="submitted && formControls.mobile.errors"
+    >
+      <label *ngIf="formControls.mobile.errors.required"
+        >Ce champ est obligatoire.</label
+      >
+      <label *ngIf="formControls.mobile.errors.minlength"
+        >Au moins 8 chiffres.</label
+      >
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Location</label>
+    <input
+      formControlName="location"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': submitted && formControls.location.errors }"
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="submitted && formControls.location.errors"
+    >
+      <label *ngIf="formControls.location.errors.required"
+        >Ce champ est obligatoire.</label
+      >
+      <label *ngIf="formControls.location.errors.pattern"
+        >Ce champs est de type alphanumérique.</label
+      >
+    </div>
+  </div>
+  <div class="form-group">
+    <input type="submit" class="btn btn-primary" value="Submit" />
+  </div>
+</form>
+<div class="alert alert-info" *ngIf="showSuccessMessage">
+  Soumis avec succès.
+</div>
